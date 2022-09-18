@@ -11,11 +11,12 @@ services.AddControllersWithViews().AddNewtonsoftJson(x => x.SerializerSettings.R
 services.AddEndpointsApiExplorer();
 services.AddSwaggerGen(options =>
 {
-    
+
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
+services.AddHostedService<Rez.Task.DonRac>();
 
 var app = builder.Build();
 
@@ -32,6 +33,14 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+
+Task task = new(() =>
+{
+    
+});
+
+task.Start();
+
 
 app.UseRouting();
 
