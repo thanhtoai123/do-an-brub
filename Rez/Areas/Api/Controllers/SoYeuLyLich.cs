@@ -9,8 +9,8 @@ namespace Rez.Areas.Api.Controllers;
 /// </summary>
 [Area("api")]
 [ApiController]
-[Route("/[area]/SoYeuLyLich")]
-public class SoYeuLyLichApiController : ControllerBase
+[Route("/[area]/[controller]")]
+public class SoYeuLyLich : ControllerBase
 {
     private readonly Contexts.AppDbContext database;
 
@@ -18,7 +18,7 @@ public class SoYeuLyLichApiController : ControllerBase
     /// 
     /// </summary>
     /// <param name="database"></param>
-    public SoYeuLyLichApiController(Contexts.AppDbContext database)
+    public SoYeuLyLich(Contexts.AppDbContext database)
     {
         this.database = database;
     }
@@ -29,7 +29,7 @@ public class SoYeuLyLichApiController : ControllerBase
     /// <param name="soYeuLyLich"></param>
     /// <returns></returns>
     [HttpPost]
-    public IActionResult Post([FromBody]SoYeuLyLich soYeuLyLich)
+    public IActionResult Post([FromBody] Models.SoYeuLyLich.SoYeuLyLich soYeuLyLich)
     {
         database.Add(soYeuLyLich);
 

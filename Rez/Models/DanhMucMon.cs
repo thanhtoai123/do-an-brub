@@ -5,7 +5,7 @@ namespace Rez.Models;
 /// <summary>
 /// 
 /// </summary>
-public class Mon
+public class DanhMucMon
 {
     /// <summary>
     /// 
@@ -31,18 +31,12 @@ public class Mon
     /// 
     /// </summary>
     /// <value></value>
-    public virtual ICollection<Models.GiangVien>? GiangVien { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public virtual ICollection<Models.DanhMucMon>? DanhSachMon { get; set; }
+    public virtual ICollection<Mon>? Mon { get; set; }
 
     /// <summary>
     /// 
     /// </summary>
     /// <value></value>
     [Timestamp]
-    public byte[]? Timestamp { get; set; } = null!;
+    public byte[]? Timestamp { get; set; }
 }

@@ -1,4 +1,5 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Rez.Models;
 
 namespace Rez.Contexts;
 
@@ -28,6 +29,16 @@ public class AppDbContext : DbContext
         });
 
         builder.Entity<Models.Mon>(entity =>
+        {
+            entity.HasIndex(x => x.Ten).IsUnique();
+        });
+
+        builder.Entity<Models.KhoaHoc>(entity =>
+        {
+            entity.HasIndex(x => x.Ten).IsUnique();
+        });
+
+        builder.Entity<Models.Lop>(entity =>
         {
             entity.HasIndex(x => x.Ten).IsUnique();
         });
@@ -86,4 +97,21 @@ public class AppDbContext : DbContext
     /// </summary>
     /// <value></value>
     public DbSet<Models.SoYeuLyLich.QuaTrinhDaoTao> QuaTrinhDaoTao { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    public DbSet<Models.DanhMucMon> DanhSachMon { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    public DbSet<Rez.Models.KhoaHoc> KhoaHoc { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Models.Lop> Lop { get; set; } = null!;
 }

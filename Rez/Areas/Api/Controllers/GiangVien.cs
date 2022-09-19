@@ -13,8 +13,8 @@ namespace Rez.Areas.Api.Controllers;
 /// </summary>
 [Area("Api")]
 [ApiController]
-[Route("/[area]/giangvien")]
-public class GiangVienRESTController : ControllerBase
+[Route("/[area]/[controller]")]
+public class GiangVien : ControllerBase
 {
     private readonly Contexts.AppDbContext database;
 
@@ -22,7 +22,7 @@ public class GiangVienRESTController : ControllerBase
     /// 
     /// </summary>
     /// <param name="database"></param>
-    public GiangVienRESTController(Contexts.AppDbContext database)
+    public GiangVien(Contexts.AppDbContext database)
     {
         this.database = database;
     }
@@ -83,7 +83,7 @@ public class GiangVienRESTController : ControllerBase
     [HttpDelete]
     public async Task<IActionResult> Delete(Guid id)
     {
-        GiangVien giangVien = new() { Id = id };
+        Models.GiangVien giangVien = new() { Id = id };
         database.Entry(giangVien).State = EntityState.Deleted;
         int changes = await database.SaveChangesAsync(HttpContext.RequestAborted);
         if (changes == 0)
@@ -112,7 +112,7 @@ public class GiangVienRESTController : ControllerBase
     /// <param name="patch"></param>
     /// <returns></returns>
     [HttpPatch]
-    public async Task<IActionResult> Update(Guid id, [FromBody] JsonPatchDocument<GiangVien> patch)
+    public async Task<IActionResult> Update(Guid id, [FromBody] JsonPatchDocument<Models.GiangVien> patch)
     {
         var giangVien = await database.GiangVien.FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
         if (giangVien is not null)

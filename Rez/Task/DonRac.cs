@@ -1,5 +1,8 @@
 ﻿namespace Rez.Task
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DonRac : IHostedService
     {
         private Timer timer = null!;
