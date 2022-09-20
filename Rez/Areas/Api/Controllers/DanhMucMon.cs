@@ -44,7 +44,7 @@ namespace Rez.Areas.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Models.DanhMucMon>> Get(Guid id)
         {
-            var danhMucMon = await database.DanhSachMon.FindAsync(id, HttpContext.RequestAborted);
+            var danhMucMon = await database.DanhSachMon.FirstOrDefaultAsync(x=>x.Id == id, HttpContext.RequestAborted);
 
             if (danhMucMon == null)
             {

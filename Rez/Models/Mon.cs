@@ -37,7 +37,12 @@ public class Mon
     /// 
     /// </summary>
     /// <value></value>
-    public virtual ICollection<Models.DanhMucMon>? DanhSachMon { get; set; }
+    public virtual ICollection<Models.DanhMucMon>? DanhMucMon { get; set; }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public virtual ICollection<Models.KhoaHoc>? KhoaHoc { get; set; }
 
     /// <summary>
     /// 

@@ -31,7 +31,7 @@ public class DanhMucMon
     /// 
     /// </summary>
     /// <value></value>
-    public virtual ICollection<Mon>? Mon { get; set; }
+    public virtual ICollection<Models.Mon>? Mon { get; set; }
 
     /// <summary>
     /// 

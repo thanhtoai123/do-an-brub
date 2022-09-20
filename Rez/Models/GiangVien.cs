@@ -11,5 +11,5 @@ public class GiangVien : Nguoi
     /// 
     /// </summary>
     /// <value></value>
-    public virtual ICollection<Mon>? Mon { get; set; } = null!;
+    public virtual ICollection<Models.Lop>? Lop { get; set; } = null!;
 }

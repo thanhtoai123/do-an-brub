@@ -31,6 +31,12 @@ public class AppDbContext : DbContext
         builder.Entity<Models.Mon>(entity =>
         {
             entity.HasIndex(x => x.Ten).IsUnique();
+            entity.HasMany(x => x.DanhMucMon).WithMany(x => x.Mon);
+        });
+
+        builder.Entity<Models.DanhMucMon>(entity =>
+        {
+            entity.HasMany(x => x.Mon).WithMany(x => x.DanhMucMon);
         });
 
         builder.Entity<Models.KhoaHoc>(entity =>
@@ -114,4 +120,9 @@ public class AppDbContext : DbContext
     /// 
     /// </summary>
     public DbSet<Models.Lop> Lop { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Rez.Models.Lich> Lich { get; set; } = null!;
 }

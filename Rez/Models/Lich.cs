@@ -5,30 +5,22 @@ namespace Rez.Models
     /// <summary>
     /// 
     /// </summary>
-    public class Lop
+    public class Lich
     {
         /// <summary>
         /// 
         /// </summary>
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
-        [Required]
-        public string Ten { get; set; } = null!;
-
         /// <summary>
         /// 
         /// </summary>
-        public virtual Models.KhoaHoc? KhoaHoc { get; set; }
-
+        public DateTime ThoiGianBatDau { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public virtual ICollection<Models.HocVien>? HocVien { get; set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        public virtual Models.GiangVien? GiangVien { get; set; }
+        public DateTime ThoiGianKetThuc { get; set; }
+        public virtual Lop? Lop { get; set; }
         /// <summary>
         /// 
         /// </summary>

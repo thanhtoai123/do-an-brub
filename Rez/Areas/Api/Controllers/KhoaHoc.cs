@@ -10,29 +10,30 @@ using Rez.Models;
 
 namespace Rez.Areas.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Area("Api")]
+    [Route("/[area]/KhoaHoc")]
     [ApiController]
     public class KhoaHoc : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly AppDbContext database;
 
-        public KhoaHoc(AppDbContext context)
+        public KhoaHoc(AppDbContext database)
         {
-            _context = context;
+            this.database = database;
         }
 
         // GET: api/KhoaHoc
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Models.KhoaHoc>>> GetKhoaHoc()
         {
-            return await _context.KhoaHoc.ToListAsync();
+            return await database.KhoaHoc.ToListAsync();
         }
 
         // GET: api/KhoaHoc/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Models.KhoaHoc>> GetKhoaHoc(Guid id)
         {
-            var khoaHoc = await _context.KhoaHoc.FindAsync(id);
+            var khoaHoc = await database.KhoaHoc.FindAsync(id);
 
             if (khoaHoc == null)
             {
@@ -52,11 +53,11 @@ namespace Rez.Areas.Api.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(khoaHoc).State = EntityState.Modified;
+            database.Entry(khoaHoc).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await database.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -76,10 +77,10 @@ namespace Rez.Areas.Api.Controllers
         // POST: api/KhoaHoc
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<KhoaHoc>> PostKhoaHoc(Models.KhoaHoc khoaHoc)
+        public async Task<ActionResult<Models.KhoaHoc>> PostKhoaHoc(Models.KhoaHoc khoaHoc)
         {
-            _context.KhoaHoc.Add(khoaHoc);
-            await _context.SaveChangesAsync();
+            database.KhoaHoc.Add(khoaHoc);
+            await database.SaveChangesAsync();
 
             return CreatedAtAction("GetKhoaHoc", new { id = khoaHoc.Id }, khoaHoc);
         }
@@ -88,21 +89,21 @@ namespace Rez.Areas.Api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteKhoaHoc(Guid id)
         {
-            var khoaHoc = await _context.KhoaHoc.FindAsync(id);
+            var khoaHoc = await database.KhoaHoc.FindAsync(id);
             if (khoaHoc == null)
             {
                 return NotFound();
             }
 
-            _context.KhoaHoc.Remove(khoaHoc);
-            await _context.SaveChangesAsync();
+            database.KhoaHoc.Remove(khoaHoc);
+            await database.SaveChangesAsync();
 
             return NoContent();
         }
 
         private bool KhoaHocExists(Guid id)
         {
-            return _context.KhoaHoc.Any(e => e.Id == id);
+            return database.KhoaHoc.Any(e => e.Id == id);
         }
     }
 }

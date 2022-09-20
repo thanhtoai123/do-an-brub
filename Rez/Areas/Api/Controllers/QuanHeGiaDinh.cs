@@ -14,7 +14,7 @@ namespace Rez.Areas.Api.Controllers
     /// 
     /// </summary>
     [Area("Api")]
-    [Route("/[api]/[controller]")]
+    [Route("/[area]/[controller]")]
     [ApiController]
     public class QuanHeGiaDinh : ControllerBase
     {

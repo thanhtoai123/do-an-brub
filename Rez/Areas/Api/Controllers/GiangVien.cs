@@ -30,12 +30,22 @@ public class GiangVien : ControllerBase
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        return Ok(await database.GiangVien.ToArrayAsync(HttpContext.RequestAborted));
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var giangVien = await database.GiangVien.Include(x => x.Mon).FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
+        var giangVien = await database.GiangVien.Include(x => x.SoYeuLyLich).FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
         if (giangVien is not null)
         {
             return Ok(giangVien);
@@ -51,23 +61,23 @@ public class GiangVien : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post(Models.GiangVien model)
     {
-        if (model.Mon is not null)
+        if (model.Lop is not null)
         {
-            string[] ten = model.Mon.Select(x => x.Ten).ToArray();
-            ICollection<Models.Mon> monMoi = new HashSet<Models.Mon>();
+            string[] ten = model.Lop.Select(x => x.Ten).ToArray();
+            ICollection<Models.Lop> monMoi = new HashSet<Models.Lop>();
             ten.ForAll(x =>
             {
-                var mon = database.Mon.FirstOrDefault(y => y.Ten == x);
-                if (mon is not null)
+                var lop = database.Lop.FirstOrDefault(y => y.Ten == x);
+                if (lop is not null)
                 {
-                    mon.GiangVien = null;
-                    database.Entry(mon).State = EntityState.Unchanged;
-                    monMoi.Add(mon);
+                    lop.GiangVien = null;
+                    database.Entry(lop).State = EntityState.Unchanged;
+                    monMoi.Add(lop);
                 }
                 else
-                    monMoi.Add(model.Mon.First(y => y.Ten == x));
+                    monMoi.Add(model.Lop.First(y => y.Ten == x));
             });
-            model.Mon = monMoi;
+            model.Lop = monMoi;
         }
 
         await database.AddAsync(model, HttpContext.RequestAborted);
