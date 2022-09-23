@@ -18,7 +18,7 @@ namespace Rez.Models
         /// </summary>
         [Required]
         public string Ten { get; set; } = null!;
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,6 +28,10 @@ namespace Rez.Models
         /// 
         /// </summary>
         public virtual ICollection<Models.Mon>? Mon { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual ICollection<Models.Lop>? Lop { get; set; }
 
         /// <summary>
         /// 

@@ -48,6 +48,13 @@ public class AppDbContext : DbContext
         {
             entity.HasIndex(x => x.Ten).IsUnique();
         });
+
+        builder.Entity<Models.DiemDanh>(entity =>
+        {
+            entity.HasIndex(nameof(Models.DiemDanh.HocVienId),
+                            nameof(Models.DiemDanh.LichId))
+                  .IsUnique();
+        });
     }
 
     /// <summary>
@@ -125,4 +132,9 @@ public class AppDbContext : DbContext
     /// 
     /// </summary>
     public DbSet<Rez.Models.Lich> Lich { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public DbSet<Rez.Models.DiemDanh> DienDanh { get; set; }
 }

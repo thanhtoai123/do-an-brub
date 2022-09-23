@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Rez.Areas.Api.Controllers;
 
@@ -10,7 +11,7 @@ namespace Rez.Areas.Api.Controllers;
 [Area("Api")]
 [ApiController]
 [Route("/[area]/hocvien")]
-public class HocVienRESTController : ControllerBase
+public class HocVien : ControllerBase
 {
     private readonly Contexts.AppDbContext database;
 
@@ -18,9 +19,17 @@ public class HocVienRESTController : ControllerBase
     /// 
     /// </summary>
     /// <param name="database"></param>
-    public HocVienRESTController(Contexts.AppDbContext database)
+    public HocVien(Contexts.AppDbContext database)
     {
         this.database = database;
+    }
+
+    public async Task<IActionResult> GetAll()
+    {
+        var danhSach = await database.HocVien.Include(x => x.SoYeuLyLich).AsNoTracking().ToArrayAsync(HttpContext.RequestAborted);
+        if (danhSach is null)
+            return NotFound();
+        return Ok(danhSach);
     }
 
     /// <summary>
@@ -28,10 +37,13 @@ public class HocVienRESTController : ControllerBase
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [HttpGet]
-    public IActionResult Get(Guid id)
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Get(Guid id)
     {
-        return Ok();
+        Models.HocVien? hocVien = await database.HocVien.Include(x => x.SoYeuLyLich).FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
+        if (hocVien is null)
+            return NotFound();
+        return Ok(hocVien);
     }
 
     /// <summary>
@@ -44,7 +56,10 @@ public class HocVienRESTController : ControllerBase
     {
         database.Add(model);
 
-        await database.SaveChangesAsync();
+        int change = await database.SaveChangesAsync(HttpContext.RequestAborted);
+
+        if(change == 0)
+            return Conflict();
 
         return Ok(model);
     }
