@@ -7,9 +7,11 @@
         </div>
         <input asp-for="@Model.SoYeuLyLich.DienThoai" class="form-control" data-inputmask="'mask': ['999 999 9999']" data-mask>
     </div>
+    <span asp-validation-for="@Model.SoYeuLyLich.DienThoai" class="text-danger"></span>
 </div>
 
 <div class="form-group">
-    <label fasp-for="@Model.SoYeuLyLich.Email">Email</label>
-    <input asp-for="@Model.SoYeuLyLich.Email" class="form-control" id="email" placeholder="Ví dụ: vidu@gmail.com">
+    <label asp-for="@Model.SoYeuLyLich.Email">Email</label>
+    <input asp-for="@Model.SoYeuLyLich.Email" class="form-control" placeholder="Ví dụ: vidu@gmail.com">
+    <span asp-validation-for="@Model.SoYeuLyLich.Email" class="text-danger"></span>
 </div>

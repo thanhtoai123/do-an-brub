@@ -1,7 +1,5 @@
 export class TinhThanhPho {
 
-    static db = openDatabase('mydb', '1.0', 'Demo for sqlite web', 5 * 1024 * 1024);
-
     /**
      * 
      * @param {string} inputTinhId 
@@ -20,7 +18,6 @@ export class TinhThanhPho {
             text_data = data;
         }
 
-        console.error("GG")
         let inputTinh = document.getElementById(inputTinhId);
         /**
          * @type {HTMLSelectElement}

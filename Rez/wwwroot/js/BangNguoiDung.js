@@ -106,6 +106,9 @@ $(function () {
 
 $(document).ready(
     function () {
+        $('#formThongTin').removeData('validator').removeData('unobtrusiveValidation');
+        $.validator.unobtrusive.parse($('#formThongTin'));
+
         TinhThanhPho.nap('tinh', 'quanhuyen');
         globalThis.trangThai = "";
 
@@ -115,14 +118,54 @@ $(document).ready(
         });
 
         document.getElementById("nut-luu").addEventListener('click', function () {
-            let form = new FormData(document.getElementById("formThongTin"));
+            if ($('#formThongTin').valid()) {
+                let form = new FormData(document.getElementById("formThongTin"));
 
-            let x = document.querySelector(".active [name='phanloai']");
-            let doiTuong = x.id;
-            let tab = x.parentElement.href;
+                let json = Object.fromEntries(form.entries());
 
-            let json = Object.fromEntries(form.entries());
-            console.log(json);
+                let phanLoai = document.querySelector("#phan-loai-form .active").getAttribute('href');
+
+                let url = "";
+
+                switch (phanLoai) {
+                    case "#admin":
+                        {
+                            delete json.truong;
+                            delete json.phuHuynh;
+                            delete json.donViCongTac;
+                            delete json.trinhDo;
+                            url = "/api/quantri";
+                        }
+                        break;
+                    case "#giangvien":
+                        {
+                            delete json.truong;
+                            delete json.phuHuynh;
+                            url = "/api/giangvien";
+                        }
+                        break;
+                    case "#hocvien":
+                        {
+                            delete json.donViCongTac;
+                            delete json.trinhDo;
+                            url = "/api/hocvien";
+                        }
+                        break;
+                }
+
+                let body = JSON.stringify(json);
+
+                fetch(url, {
+                    method: 'POST', headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: body
+                }).then(res => {
+                    if (res.status == 200) {
+                        $('#modal-lg').modal('hide');
+                    }
+                });
+            }
 
         });
     }

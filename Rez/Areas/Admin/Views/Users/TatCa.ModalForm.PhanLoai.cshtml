@@ -1,0 +1,28 @@
+<div class="card">
+    <div class="card-header d-flex p-0">
+        <ul id="phan-loai-form" class="nav nav-pills p-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#admin" data-toggle="tab">
+                    <label class="mb-0">Amin</label>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#giangvien" data-toggle="tab">
+                    <label class="mb-0">Giáo viên</label>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#hocvien" data-toggle="tab">
+                    <label class="mb-0">Học sinh</label>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="card-body">
+        <div class="tab-content">
+            <partial name="TatCa.ModalForm.PhanLoai.Admin" model="new Rez.Models.QuanTri()" />
+            <partial name="TatCa.ModalForm.PhanLoai.GiangVien" model="new Rez.Models.GiangVien()" />
+            <partial name="TatCa.ModalForm.PhanLoai.HocVien" model="new Rez.Models.HocVien()" />
+        </div>
+    </div>
+</div>

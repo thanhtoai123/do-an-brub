@@ -6,6 +6,7 @@ namespace Rez.Models.DiaChi;
 public class QuanHuyen
 {
     [Key]
+    [Required(ErrorMessage = "Vui lòng chọn quận/huyện")]
     public Guid Id { get; set; } = Guid.NewGuid();
 
     public string? Ten { get; set; }

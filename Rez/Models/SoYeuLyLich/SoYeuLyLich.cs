@@ -45,6 +45,7 @@ public class SoYeuLyLich
     /// 
     /// </summary>
     /// <value></value>
+    [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
     public DateTime? SinhNgay { get; set; }
 
     /// <summary>
@@ -64,10 +65,10 @@ public class SoYeuLyLich
     /// <value></value>
     public string? NoiDangKyHoKhauThuongTru { get; set; }
 
-
-
-
-
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
     public Guid? IdDiaChi { get; set; }
     /// <summary>
     /// 
@@ -79,12 +80,16 @@ public class SoYeuLyLich
     /// 
     /// </summary>
     /// <value></value>
+    [Phone(ErrorMessage = "Vui lòng nhập đúng định dạng số điện thoại")]
+    [Required(ErrorMessage = "Vui lòng cung cấp số điện thoại")]
     [DataType(DataType.PhoneNumber)]
     public string? DienThoai { get; set; }
     /// <summary>
     /// 
     /// </summary>
     /// <value></value>
+    [EmailAddress(ErrorMessage = "Vui lòng nhập đúng định dạng email")]
+    [Required(ErrorMessage = "Vui lòng cung cấp địa chỉ email")]
     [DataType(DataType.EmailAddress)]
     public string? Email { get; set; }
     /// <summary>

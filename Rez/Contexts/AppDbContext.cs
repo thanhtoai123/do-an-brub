@@ -161,4 +161,5 @@ public class AppDbContext : DbContext
     /// </summary>
     /// <value></value>
     public DbSet<Rez.Models.DiaChi.QuanHuyen> QuanHuyen { get; set; } = null!;
+    public DbSet<Rez.Models.QuanTri> QuanTri { get; set; } = null!;
 }
