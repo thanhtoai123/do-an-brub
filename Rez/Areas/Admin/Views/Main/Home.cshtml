@@ -1,0 +1,135 @@
+@section style {
+<!-- fullCalendar -->
+<link rel="stylesheet" href="plugins/fullcalendar/main.css">
+}
+
+
+
+@section scripts {
+<!-- fullCalendar 2.2.5 -->
+<script src="plugins/moment/moment.min.js"></script>
+<script src="plugins/fullcalendar/main.js"></script>
+<!-- OPTIONAL SCRIPTS -->
+<script src="plugins/chart.js/Chart.min.js"></script>
+<!-- Lịch -->
+<script src="dist/js/new/lich.js"></script>
+}
+
+<!-- Small Box (Stat card) -->
+<div class="row">
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-purple">
+            <!-- end loading -->
+            <div class="inner">
+                <h3>4</h3>
+
+                <p>Lớp đang học</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-primary">
+            <!-- end loading -->
+            <div class="inner">
+                <h3>50</h3>
+
+                <p>Lớp học</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-house-user"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-danger">
+            <!-- end loading -->
+            <div class="inner">
+                <h3>30</h3>
+
+                <p>Giáo viên</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-tie"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-6">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <!-- end loading -->
+            <div class="inner">
+                <h3>500</h3>
+                <p>Học sinh</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <a href="#" class="small-box-footer">
+                Chi tiết <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+    <!-- ./col -->
+</div>
+
+<div class="row mt-5">
+    <h1 class="text-dark fa-2x ml-2">Lịch</h1>
+
+    <div class="col-md-12 d-none">
+        <div class="sticky-top mb-3">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Draggable Events</h4>
+                </div>
+                <div class="card-body">
+                    <!-- the events -->
+                    <div id="external-events">
+                        <div class="external-event bg-success">Lunch</div>
+                        <div class="external-event bg-warning">Về nhà</div>
+                        <div class="external-event bg-info">Làm bài tập</div>
+                        <div class="external-event bg-primary">Work on UI design</div>
+                        <div class="external-event bg-danger">Sleep tight</div>
+                        <div class="checkbox">
+                            <label for="drop-remove">
+                                <input type="checkbox" id="drop-remove">
+                                remove after drop
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+    <!-- /.col -->
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-body p-0">
+                <!-- THE CALENDAR -->
+                <div id="calendar"></div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->

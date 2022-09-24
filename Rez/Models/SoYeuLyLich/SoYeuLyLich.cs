@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Rez.Models.DiaChi;
 using Rez.Models.SoYeuLyLich;
 
 namespace Rez.Models.SoYeuLyLich;
@@ -30,6 +32,7 @@ public class SoYeuLyLich
     /// 
     /// </summary>
     /// <value></value>
+    [Required(ErrorMessage = "Vui lòng không bỏ trống!")]
     public string? HoVaTen { get; set; }
 
     /// <summary>
@@ -60,16 +63,30 @@ public class SoYeuLyLich
     /// </summary>
     /// <value></value>
     public string? NoiDangKyHoKhauThuongTru { get; set; }
+
+
+
+
+
+    public Guid? IdDiaChi { get; set; }
     /// <summary>
     /// 
     /// </summary>
     /// <value></value>
-    public string? ChoOHienNay { get; set; }
+    [ForeignKey(nameof(IdDiaChi))]
+    public DiaChi.DiaChi? ChoOHienNay { get; set; }
     /// <summary>
     /// 
     /// </summary>
     /// <value></value>
-    public string? DienThoaiLienHe { get; set; }
+    [DataType(DataType.PhoneNumber)]
+    public string? DienThoai { get; set; }
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    [DataType(DataType.EmailAddress)]
+    public string? Email { get; set; }
     /// <summary>
     /// 
     /// </summary>

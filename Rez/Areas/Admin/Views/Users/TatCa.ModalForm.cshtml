@@ -1,0 +1,119 @@
+@model Rez.Models.Nguoi
+
+<!-- Model form  -->
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <!-- Form bao quanh  -->
+            <form id="formThongTin">
+                <div class="modal-body">
+                    <!-- form start -->
+                    <div class="card-body">
+
+                        <div class="form-group">
+                            <label asp-for="@Model.SoYeuLyLich.HoVaTen">Họ và tên</label>
+                            <input asp-for="@Model.SoYeuLyLich.HoVaTen" type="text" class="form-control" placeholder="Ví dụ: Nguyễn Văn Anh">
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="@Model.SoYeuLyLich.GioiTinh">Giới tính</label>
+                            <div class="custom-control custom-radio">
+                                <input asp-for="@Model.SoYeuLyLich.GioiTinh" value="@Rez.Models.SoYeuLyLich.GioiTinh.Nam" id="gioitinh_nam" class="custom-control-input" type="radio">
+                                <label for="gioitinh_nam" class="custom-control-label">Nam</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input asp-for="@Model.SoYeuLyLich.GioiTinh" value="@Rez.Models.SoYeuLyLich.GioiTinh.Nu" id="gioitinh_nu" class="custom-control-input" type="radio">
+                                <label for="gioitinh_nu" class="custom-control-label">Nữ</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="@Model.SoYeuLyLich.SinhNgay">Ngày sinh</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                </div>
+                                <input asp-for="@Model.SoYeuLyLich.SinhNgay" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+                            </div>
+                            <!-- /.input group -->
+                        </div>
+
+                        @* Điện thoại, Email *@
+                        <partial name="TatCa.ModalForm.DienThoaiEmail" model="@Model" />
+
+                        @* Địa chỉ *@
+                        <partial name="TatCa.ModalForm.DiaChi" model="@Model" />
+
+                        <div class="card">
+                            <div class="card-header d-flex p-0">
+                                <ul class="nav nav-pills p-2">
+                                    <li class="nav-item"><a class="nav-link active" href="#tab_1" data-toggle="tab">
+                                            <input checked class="d-none" type="radio" name="phanloai" id="admin">
+                                            <label class="mb-0" for="admin">Amin</label>
+                                        </a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_2" data-toggle="tab">
+                                            <input class="d-none" type="radio" name="phanloai" id="giaovien">
+                                            <label class="mb-0" for="giaovien">Giáo viên</label>
+                                        </a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#tab_3" data-toggle="tab">
+                                            <input class="d-none" type="radio" name="phanloai" id="hocsinh">
+                                            <label class="mb-0" for="hocsinh">Học sinh</label>
+                                        </a></li>
+                                </ul>
+                            </div><!-- /.card-header -->
+                            <div class="card-body">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+                                        <i>Không có trường thông tin nào!</i>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2">
+                                        <div class="form-group">
+                                            <label>Trình độ</label>
+                                            <select class="form-control select2bs4" style="width: 100%;">
+                                                <option>Cao đẳng</option>
+                                                <option selected="selected">Đại học</option>
+                                                <option>Thạc sĩ</option>
+                                                <option>Tiến sĩ</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="donvicongtac">Đơn vị công tác</label>
+                                            <input type="text" name="donvicongtac" class="form-control" id="donvicongtac" placeholder="Ví dụ: Trường THPT Huỳnh Thúc Kháng">
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_3">
+                                        <div class="form-group">
+                                            <label for="truong">Trường học</label>
+                                            <input type="text" name="truong" class="form-control" id="truong" placeholder="Ví dụ: Trường THCS Phan Bội Châu">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phuhuynh">Phụ huynh</label>
+                                            <input type="text" name="phuhuynh" class="form-control" id="phuhuynh" placeholder="Ví dụ: Lê văn Hải">
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
+                            </div><!-- /.card-body -->
+                        </div>
+
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                    <button type="submit" id="nut-luu" class="btn btn-primary">Lưu</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

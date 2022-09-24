@@ -9,46 +9,8 @@ namespace Rez.Models;
 /// </summary>
 public class HocVien : Nguoi
 {
-}
+    public String? Truong { get; set; }
+    public String? PhuHuynh { get; set; }
 
-/// <summary>
-/// 
-/// </summary>
-public interface IHocVien
-{
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public Guid Id { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public string HoTen { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public DateTime NgaySinh { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public string SoDienThoai { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public string Email { get; set; }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    public string DiaChi { get; set; }
+    public virtual ICollection<Models.Lop>? Lop { get; set; } = null!;
 }

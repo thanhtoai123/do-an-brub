@@ -1,0 +1,16 @@
+@model Rez.Models.Nguoi
+@{
+}
+
+<div class="form-group">
+    <label for="diachi">Địa chỉ</label>
+    <select asp-for="@Model.SoYeuLyLich.ChoOHienNay.Tinh.Id" id="tinh" class="form-control mb-3">
+        <option value="">Tỉnh / Thành phố</option>
+    </select>
+
+    <select asp-for="@Model.SoYeuLyLich.ChoOHienNay.QuanHuyen.Id" id="quanhuyen" class="form-control mb-3">
+        <option value="">Quận / Huyện</option>
+    </select>
+
+    <input asp-for="@Model.SoYeuLyLich.ChoOHienNay.NoiO" class="form-control" placeholder="Ví dụ: Phường Bến Thủy ">
+</div>

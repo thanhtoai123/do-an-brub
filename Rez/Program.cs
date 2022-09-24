@@ -1,5 +1,6 @@
 using System.Reflection;
 using Rez.ThietLap;
+using Web.ThietLap;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 services.AddHostedService<Rez.Task.DonRac>();
+services.CORS();
 
 var app = builder.Build();
 
@@ -43,11 +45,11 @@ task.Start();
 
 
 app.UseRouting();
-
+app.UseCors();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Admin}/{controller=Main}/{action=Home}/{id?}");
 
 app.Run();

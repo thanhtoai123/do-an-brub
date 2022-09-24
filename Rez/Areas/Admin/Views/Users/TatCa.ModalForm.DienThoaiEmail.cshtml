@@ -1,0 +1,15 @@
+@model Rez.Models.Nguoi
+<div class="form-group">
+    <label asp-for="@Model.SoYeuLyLich.DienThoai">Số điện thoại</label>
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fas fa-phone"></i></span>
+        </div>
+        <input asp-for="@Model.SoYeuLyLich.DienThoai" class="form-control" data-inputmask="'mask': ['999 999 9999']" data-mask>
+    </div>
+</div>
+
+<div class="form-group">
+    <label fasp-for="@Model.SoYeuLyLich.Email">Email</label>
+    <input asp-for="@Model.SoYeuLyLich.Email" class="form-control" id="email" placeholder="Ví dụ: vidu@gmail.com">
+</div>

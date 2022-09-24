@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Rez.Models;
+using Rez.Models.DiaChi;
 
 namespace Rez.Contexts;
 
@@ -54,6 +55,11 @@ public class AppDbContext : DbContext
             entity.HasIndex(nameof(Models.DiemDanh.HocVienId),
                             nameof(Models.DiemDanh.LichId))
                   .IsUnique();
+        });
+
+        builder.Entity<Models.DiaChi.Tinh>(entity =>
+        {
+            entity.HasIndex(x => x.Ten).IsUnique();
         });
     }
 
@@ -136,5 +142,23 @@ public class AppDbContext : DbContext
     /// <summary>
     /// 
     /// </summary>
-    public DbSet<Rez.Models.DiemDanh> DienDanh { get; set; }
+    public DbSet<Rez.Models.DiemDanh> DienDanh { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    public DbSet<Rez.Models.DiaChi.DiaChi> DiaChi { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    public DbSet<Rez.Models.DiaChi.Tinh> Tinh { get; set; } = null!;
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <value></value>
+    public DbSet<Rez.Models.DiaChi.QuanHuyen> QuanHuyen { get; set; } = null!;
 }

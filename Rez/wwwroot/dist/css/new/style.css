@@ -1,0 +1,13 @@
+.main-header {
+    position: sticky;
+    top: 0;
+}
+
+.main-sidebar {
+    position: fixed !important;
+}
+
+.sidebar {
+    overflow-y: auto;
+    height: 100vh;
+}

@@ -7,6 +7,9 @@ namespace Rez.Models;
 /// </summary>
 public class GiangVien : Nguoi
 {
+    public string? TrinhDo { get; set; }
+    public string? DonViCongTac { get; set; }
+
     /// <summary>
     /// 
     /// </summary>
