@@ -46,6 +46,8 @@ public class SoYeuLyLich
     /// </summary>
     /// <value></value>
     [Required(ErrorMessage = "Vui lòng nhập ngày sinh")]
+    [DisplayFormat(DataFormatString = "dd/MM/yyyy", ApplyFormatInEditMode = true)]
+    [DataType(DataType.Date)]
     public DateTime? SinhNgay { get; set; }
 
     /// <summary>

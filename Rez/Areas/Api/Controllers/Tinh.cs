@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 
 namespace Rez.Areas.Api.Controllers;
 
+/// <summary>
+/// 
+/// </summary>
 [Area("Api")]
 [Route("/[area]/tinh")]
 [ApiController]
@@ -12,11 +15,20 @@ public class Tinh : ControllerBase
 {
     private readonly Contexts.AppDbContext database;
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="database"></param>
     public Tinh(Contexts.AppDbContext database)
     {
         this.database = database;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="tinh"></param>
+    /// <returns></returns>
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] Rez.Models.DiaChi.Tinh tinh)
     {
@@ -26,6 +38,10 @@ public class Tinh : ControllerBase
         return Ok(tinh);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     [HttpGet]
     public async Task<IActionResult> Get()
     {

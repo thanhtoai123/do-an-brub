@@ -16,6 +16,9 @@ public class AppDbContext : DbContext
     /// <returns></returns>
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
+        SavingChanges += (sender, e) =>
+        {
+        };
     }
 
     /// <summary>

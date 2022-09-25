@@ -1,3 +1,4 @@
+import { FormToJson } from "./FormToJson.js";
 import { TinhThanhPho } from "./TinhThanhPho.js"
 
 $(function () {
@@ -119,12 +120,8 @@ $(document).ready(
 
         document.getElementById("nut-luu").addEventListener('click', function () {
             if ($('#formThongTin').valid()) {
-                let form = new FormData(document.getElementById("formThongTin"));
-
-                let json = Object.fromEntries(form.entries());
-
+                let json = FormToJson('formThongTin');
                 let phanLoai = document.querySelector("#phan-loai-form .active").getAttribute('href');
-
                 let url = "";
 
                 switch (phanLoai) {
