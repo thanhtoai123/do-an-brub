@@ -1,71 +1,75 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rez.Contexts;
+using Rez.PhuTro;
 
 namespace Rez.Areas.Api.Controllers;
 
-
 /// <summary>
-/// 
 /// </summary>
 [Area("Api")]
 [ApiController]
 [Route("/[area]/hocvien")]
 public class HocVien : ControllerBase
 {
-    private readonly Contexts.AppDbContext database;
+    private readonly AppDbContext _database;
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="database"></param>
-    public HocVien(Contexts.AppDbContext database)
+    public HocVien(AppDbContext database)
     {
-        this.database = database;
+        _database = database;
     }
 
     public async Task<IActionResult> GetAll()
     {
-        var danhSach = await database.HocVien.Include(x => x.SoYeuLyLich).AsNoTracking().ToArrayAsync(HttpContext.RequestAborted);
-        if (danhSach is null)
-            return NotFound();
+        var danhSach = await _database.HocVien.Include(x => x.SoYeuLyLich).AsNoTracking()
+            .ToArrayAsync(HttpContext.RequestAborted);
         return Ok(danhSach);
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        Models.HocVien? hocVien = await database.HocVien.Include(x => x.SoYeuLyLich).FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
+        var hocVien = await _database.HocVien.Include(x => x.SoYeuLyLich)
+            .FirstOrDefaultAsync(x => x.Id == id, HttpContext.RequestAborted);
         if (hocVien is null)
             return NotFound();
         return Ok(hocVien);
     }
 
     /// <summary>
-    /// 
     /// </summary>
-    /// <param name="model"></param>
+    /// <param name="hocVien"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> Post(Models.HocVien model)
+    public async Task<IActionResult> Post(Models.HocVien hocVien)
     {
-        database.Add(model);
+        _database.HocVien.Attach(hocVien);
 
-        int change = await database.SaveChangesAsync(HttpContext.RequestAborted);
+        int thayDoi;
+        thayDoi = await _database.SaveChangesAsync(HttpContext.RequestAborted);
 
-        if(change == 0)
-            return Conflict();
+        if (thayDoi != 0)
+        {
+            hocVien.TaoTaiKhoan();
+            await _database.SaveChangesAsync();
+        }
+        else
+        {
+            Conflict();
+        }
 
-        return Ok(model);
+        return Ok(hocVien);
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -76,7 +80,6 @@ public class HocVien : ControllerBase
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
@@ -87,7 +90,6 @@ public class HocVien : ControllerBase
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="id"></param>
     /// <param name="patch"></param>

@@ -1,17 +1,17 @@
-@model Rez.Models.Nguoi
+@model Nguoi
 <div class="form-group">
     <label for="diachi">Địa chỉ</label>
-    <select asp-for="@Model.SoYeuLyLich.ChoOHienNay.Tinh.Id!" id="tinh" class="form-control mb-3">
+    <select asp-for="@Model.SoYeuLyLich!.ChoOHienNay!.Tinh!.Id" id="tinh" class="form-control mb-3">
         <option value="">Tỉnh / Thành phố</option>
     </select>
-    <span asp-validation-for="@Model.SoYeuLyLich.ChoOHienNay.Tinh.Id!" class="text-danger"></span>
+    <span asp-validation-for="@Model.SoYeuLyLich!.ChoOHienNay!.Tinh!.Id" class="text-danger"></span>
 
-    <select asp-for="@Model.SoYeuLyLich.ChoOHienNay.QuanHuyen.Id!" id="quanhuyen" class="form-control mb-3">
+    <select asp-for="@Model.SoYeuLyLich!.ChoOHienNay!.QuanHuyen!.Id" id="quanhuyen" class="form-control mb-3">
         <option value="">Quận / Huyện</option>
     </select>
-    <span asp-validation-for="@Model.SoYeuLyLich.ChoOHienNay.QuanHuyen.Id!" class="text-danger"></span>
+    <span asp-validation-for="@Model.SoYeuLyLich!.ChoOHienNay!.QuanHuyen!.Id" class="text-danger"></span>
 
 
-    <input asp-for="@Model.SoYeuLyLich.ChoOHienNay.NoiO!" class="form-control" placeholder="Ví dụ: Phường Bến Thủy ">
-    <span asp-validation-for="@Model.SoYeuLyLich.ChoOHienNay.NoiO!" class="text-danger"></span>
+    <input asp-for="@Model.SoYeuLyLich!.ChoOHienNay!.NoiO" class="form-control" placeholder="Ví dụ: Phường Bến Thủy ">
+    <span asp-validation-for="@Model.SoYeuLyLich!.ChoOHienNay!.NoiO" class="text-danger"></span>
 </div>

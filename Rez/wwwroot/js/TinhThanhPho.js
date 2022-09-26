@@ -31,12 +31,12 @@ export class TinhThanhPho {
             inputTinh.options.add(option);
         });
 
-        inputTinh.addEventListener('change', function (ev) {
-            while (inputQuanHuyen.options.length != 1) {
+        inputTinh.addEventListener('change', function () {
+            while (inputQuanHuyen.options.length !== 1) {
                 inputQuanHuyen.options.remove(inputQuanHuyen.options.length - 1);
             }
 
-            text_data.find(x => x.id == inputTinh.value).quanHuyen.forEach(quanHuyen => {
+            text_data.find(x => x.id === inputTinh.value).quanHuyen.forEach(quanHuyen => {
                 let option = document.createElement('option');
                 option.value = quanHuyen.id;
                 option.textContent = quanHuyen.ten;

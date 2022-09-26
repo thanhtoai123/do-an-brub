@@ -1,6 +1,5 @@
 using System.Reflection;
 using Rez.ThietLap;
-using Web.ThietLap;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,7 +27,7 @@ services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 services.AddHostedService<Rez.Task.DonRac>();
-services.CORS();
+services.Cors();
 
 var app = builder.Build();
 

@@ -1,17 +1,9 @@
-using Microsoft.AspNetCore.ResponseCompression;
+namespace Rez.ThietLap;
 
-namespace Web.ThietLap;
-
-public static partial class StartUp
+public static class StartUp
 {
-    public static void CORS(this IServiceCollection services)
+    public static void Cors(this IServiceCollection services)
     {
-        services.AddCors(options =>
-        {
-            options.AddPolicy("ToanBo", policy =>
-            {
-                policy.WithOrigins("*");
-            });
-        });
+        services.AddCors(options => { options.AddPolicy("ToanBo", policy => { policy.WithOrigins("*"); }); });
     }
 }

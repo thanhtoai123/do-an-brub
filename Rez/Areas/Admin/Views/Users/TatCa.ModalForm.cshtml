@@ -1,4 +1,4 @@
-@model Rez.Models.Nguoi
+@model Nguoi
 <div class="modal fade" id="modal-lg">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -12,16 +12,16 @@
                     <div class="card-body">
 
                         @* Họ và tên, Giới tính, Ngày Sinh *@
-                        <partial name="TatCa.ModalForm.HoTenGioiTinhNgaySinh" model="@Model" />
+                        <partial name="TatCa.ModalForm.HoTenGioiTinhNgaySinh" model="@Model"/>
 
                         @* Điện thoại, Email *@
-                        <partial name="TatCa.ModalForm.DienThoaiEmail" model="@Model" />
+                        <partial name="TatCa.ModalForm.DienThoaiEmail" model="@Model"/>
 
                         @* Địa chỉ *@
-                        <partial name="TatCa.ModalForm.DiaChi" model="@Model" />
+                        <partial name="TatCa.ModalForm.DiaChi" model="@Model"/>
 
                         @* Phân loại *@
-                        <partial name="TatCa.ModalForm.PhanLoai" />
+                        <partial name="TatCa.ModalForm.PhanLoai"/>
 
                     </div>
                 </div>

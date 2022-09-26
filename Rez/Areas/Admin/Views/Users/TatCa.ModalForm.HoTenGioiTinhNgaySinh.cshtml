@@ -1,30 +1,33 @@
-@model Rez.Models.Nguoi
+@using Rez.Models.SoYeuLyLich
+@model Nguoi
 <div class="form-group">
-    <label asp-for="@Model.SoYeuLyLich.HoVaTen">Họ và tên</label>
-    <input asp-for="@Model.SoYeuLyLich.HoVaTen" type="text" class="form-control" placeholder="Ví dụ: Nguyễn Văn Anh">
-    <span asp-validation-for="@Model.SoYeuLyLich.HoVaTen" class="text-danger"></span>
+    <label asp-for="@Model.SoYeuLyLich!.HoVaTen">Họ và tên</label>
+    <input asp-for="@Model.SoYeuLyLich!.HoVaTen" type="text" class="form-control" placeholder="Ví dụ: Nguyễn Văn Anh">
+    <span asp-validation-for="@Model.SoYeuLyLich!.HoVaTen" class="text-danger"></span>
 </div>
 
 <div class="form-group">
-    <label asp-for="@Model.SoYeuLyLich.GioiTinh">Giới tính</label>
+    <label asp-for="@Model.SoYeuLyLich!.GioiTinh">Giới tính</label>
     <div class="custom-control custom-radio">
-        <input asp-for="@Model.SoYeuLyLich.GioiTinh" value="@Rez.Models.SoYeuLyLich.GioiTinh.Nam" id="gioitinh_nam" class="custom-control-input" type="radio" checked>
+        <input asp-for="@Model.SoYeuLyLich!.GioiTinh" value="@GioiTinh.Nam" id="gioitinh_nam" class="custom-control-input" type="radio" checked>
         <label for="gioitinh_nam" class="custom-control-label">Nam</label>
     </div>
     <div class="custom-control custom-radio">
-        <input asp-for="@Model.SoYeuLyLich.GioiTinh" value="@Rez.Models.SoYeuLyLich.GioiTinh.Nu" id="gioitinh_nu" class="custom-control-input" type="radio">
+        <input asp-for="@Model.SoYeuLyLich!.GioiTinh" value="@GioiTinh.Nu" id="gioitinh_nu" class="custom-control-input" type="radio">
         <label for="gioitinh_nu" class="custom-control-label">Nữ</label>
     </div>
-    <span asp-validation-for="@Model.SoYeuLyLich.GioiTinh" class="text-danger"></span>
+    <span asp-validation-for="@Model.SoYeuLyLich!.GioiTinh" class="text-danger"></span>
 </div>
 
 <div class="form-group">
-    <label asp-for="@Model.SoYeuLyLich.SinhNgay">Ngày sinh</label>
+    <label asp-for="@Model.SoYeuLyLich!.SinhNgay">Ngày sinh</label>
     <div class="input-group">
         <div class="input-group-prepend">
-            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+            <span class="input-group-text">
+                <i class="far fa-calendar-alt"></i>
+            </span>
         </div>
-        <input asp-for="@Model.SoYeuLyLich.SinhNgay" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
+        <input asp-for="@Model.SoYeuLyLich!.SinhNgay" type="text" class="form-control" data-inputmask-alias="datetime" data-inputmask-inputformat="dd/mm/yyyy" data-mask>
     </div>
-    <span asp-validation-for="@Model.SoYeuLyLich.SinhNgay" class="text-danger"></span>
+    <span asp-validation-for="@Model.SoYeuLyLich!.SinhNgay" class="text-danger"></span>
 </div>

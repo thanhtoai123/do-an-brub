@@ -1,59 +1,63 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Rez.Models
+namespace Rez.Models;
+
+/// <summary>
+///     Lịch
+/// </summary>
+public class Lich
 {
     /// <summary>
-    /// Lịch
+    ///     Enum tình trạng
     /// </summary>
-    public class Lich
+    public enum TinhTrang
     {
         /// <summary>
-        /// Guid
+        ///     Chưa bắt đầu
         /// </summary>
-        [Key]
-        public Guid Id { get; set; }
-        /// <summary>
-        /// Thời gian lịch bắt đầu
-        /// </summary>
-        public DateTime ThoiGianBatDau { get; set; }
-        /// <summary>
-        /// Thời gian lịch kết thúc
-        /// </summary>
-        public DateTime ThoiGianKetThuc { get; set; }
+        ChuaBatDau,
 
         /// <summary>
-        /// Enum tình trạng
+        ///     Đang tiếp diễn
         /// </summary>
-        public enum TinhTrang
-        {
-            /// <summary>
-            /// Chưa bắt đầu
-            /// </summary>
-            ChuaBatDau,
-            /// <summary>
-            /// Đang tiếp diễn
-            /// </summary>
-            DangTiepDien,
-            /// <summary>
-            /// Đã xong
-            /// </summary>
-            DaXong,
-            /// <summary>
-            /// Đã huỷ
-            /// </summary>
-            DaHuy
-        }
+        DangTiepDien,
 
         /// <summary>
-        /// Tình trạng
+        ///     Đã xong
         /// </summary>
-        public TinhTrang TinhTrangLich { get; set; } = TinhTrang.ChuaBatDau;
+        DaXong,
 
-        public virtual Lop? Lop { get; set; }
         /// <summary>
-        /// 
+        ///     Đã huỷ
         /// </summary>
-        [Timestamp]
-        public byte[]? Timestamp { get; set; }
+        DaHuy
     }
+
+    /// <summary>
+    ///     Guid
+    /// </summary>
+    [Key]
+    public Guid Id { get; set; }
+
+    /// <summary>
+    ///     Thời gian lịch bắt đầu
+    /// </summary>
+    public DateTime ThoiGianBatDau { get; set; }
+
+    /// <summary>
+    ///     Thời gian lịch kết thúc
+    /// </summary>
+    public DateTime ThoiGianKetThuc { get; set; }
+
+    /// <summary>
+    ///     Tình trạng
+    /// </summary>
+    public TinhTrang TinhTrangLich { get; set; } = TinhTrang.ChuaBatDau;
+
+    public virtual Lop? Lop { get; set; }
+
+    /// <summary>
+    /// </summary>
+    [Timestamp]
+    public byte[]? Timestamp { get; set; }
 }

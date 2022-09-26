@@ -158,7 +158,7 @@ $(document).ready(
                     },
                     body: body
                 }).then(res => {
-                    if (res.status == 200) {
+                    if (res.status === 200) {
                         $('#modal-lg').modal('hide');
                     }
                 });

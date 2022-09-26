@@ -1,60 +1,55 @@
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
+using Rez.Contexts;
 
 namespace Rez.Areas.Api.Controllers;
 
 /// <summary>
-/// 
 /// </summary>
 [Area("Api")]
 [Route("/[area]/tinh")]
 [ApiController]
 public class Tinh : ControllerBase
 {
-    private readonly Contexts.AppDbContext database;
+    private readonly AppDbContext _database;
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="database"></param>
-    public Tinh(Contexts.AppDbContext database)
+    public Tinh(AppDbContext database)
     {
-        this.database = database;
+        _database = database;
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <param name="tinh"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] Rez.Models.DiaChi.Tinh tinh)
+    public async Task<IActionResult> Post([FromBody] Models.DiaChi.Tinh tinh)
     {
         Console.WriteLine("!");
-        database.Add(tinh);
-        await database.SaveChangesAsync(HttpContext.RequestAborted);
+        _database.Add(tinh);
+        await _database.SaveChangesAsync(HttpContext.RequestAborted);
         return Ok(tinh);
     }
 
     /// <summary>
-    /// 
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public async Task<IActionResult> Get()
+    public Task<IActionResult> Get()
     {
-        var list = database.Tinh.Include(x => x.QuanHuyen).AsNoTracking().Select(x => new
+        var list = _database.Tinh.Include(x => x.QuanHuyen).AsNoTracking().Select(x => new
         {
-            Id = x.Id,
-            Ten = x.Ten,
+            x.Id,
+            x.Ten,
             QuanHuyen = x.QuanHuyen!.Select(y => new
             {
-                Id = y.Id,
-                Ten = y.Ten
-            }).ToArray() ?? null
+                y.Id,
+                y.Ten
+            }).ToArray()
         }).ToArray();
-        return Ok(list);
+        return System.Threading.Tasks.Task.FromResult<IActionResult>(Ok(list));
     }
 }

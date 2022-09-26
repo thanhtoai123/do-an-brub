@@ -1,4 +1,3 @@
-
 using System.ComponentModel.DataAnnotations;
 
 namespace Rez.Models.DiaChi;
@@ -13,6 +12,5 @@ public class Tinh
 
     public virtual ICollection<QuanHuyen>? QuanHuyen { get; set; }
 
-    [Timestamp]
-    public byte[]? Timestamp { get; set; }
+    [Timestamp] public byte[]? Timestamp { get; set; }
 }
