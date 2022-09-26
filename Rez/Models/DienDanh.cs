@@ -6,7 +6,7 @@ namespace Rez.Models
     public class DiemDanh
     {
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         [Required]
         public Guid HocVienId { get; set; }
         [Required]

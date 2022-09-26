@@ -7,7 +7,7 @@ namespace Rez.Models.DiaChi;
 public class DiaChi
 {
     [Key]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     public string? NoiO { get; set; }
 

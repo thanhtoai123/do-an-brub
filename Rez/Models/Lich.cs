@@ -11,7 +11,7 @@ namespace Rez.Models
         /// Guid
         /// </summary>
         [Key]
-        public Guid Id { get; set; } = Guid.NewGuid();
+        public Guid Id { get; set; }
         /// <summary>
         /// Thời gian lịch bắt đầu
         /// </summary>

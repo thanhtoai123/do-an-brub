@@ -61,7 +61,7 @@ public class QuanTri : ControllerBase
     [HttpPost]
     public async Task<IActionResult> Post([FromBody]Models.QuanTri model)
     {
-        await database.AddAsync(model, HttpContext.RequestAborted);
+        database.QuanTri.Attach(model);
         await database.SaveChangesAsync(HttpContext.RequestAborted);
         return Ok(model);
     }

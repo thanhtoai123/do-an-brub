@@ -7,7 +7,7 @@ public class Tinh
 {
     [Key]
     [Required(ErrorMessage = "Vui lòng chọn tỉnh/thành phố")]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     public string? Ten { get; set; }
 

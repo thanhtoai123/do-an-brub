@@ -12,7 +12,7 @@ public class Mon
     /// </summary>
     /// <returns></returns>
     [Key]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     /// <summary>
     /// 

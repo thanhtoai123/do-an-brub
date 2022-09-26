@@ -7,7 +7,7 @@ public class QuanHuyen
 {
     [Key]
     [Required(ErrorMessage = "Vui lòng chọn quận/huyện")]
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public Guid Id { get; set; }
 
     public string? Ten { get; set; }
     

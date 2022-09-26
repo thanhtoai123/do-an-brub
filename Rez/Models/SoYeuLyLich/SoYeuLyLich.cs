@@ -71,12 +71,6 @@ public class SoYeuLyLich
     /// 
     /// </summary>
     /// <value></value>
-    public Guid? IdDiaChi { get; set; }
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <value></value>
-    [ForeignKey(nameof(IdDiaChi))]
     public DiaChi.DiaChi? ChoOHienNay { get; set; }
     /// <summary>
     /// 
