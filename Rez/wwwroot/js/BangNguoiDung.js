@@ -1,107 +1,53 @@
-import { FormToJson } from "./FormToJson.js";
-import { TinhThanhPho } from "./TinhThanhPho.js"
+import {FormToJson} from "./FormToJson.js";
+import {TinhThanhPho} from "./TinhThanhPho.js"
+
+
+async function layDuLieu() {
+    /**
+     * @type {[]}
+     */
+    let data = await fetch('/Api/NguoiDung').then(res => res.json());
+    let table = $('#example1').DataTable();
+    data.$values.forEach(x => {
+        console.log(x);
+        table.row.add(x).draw();
+    })
+}
 
 $(function () {
     $("#example1").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
+        "columns": [
+            {"data": null, "defaultContent": ""},
+            {data: "hoVaTen"},
+            {data: "taiKhoanDangNhap"},
+            {data: "phanLoai", defaultContent: ""},
+            {data: "thoiGianTao"},
+            {data: null, defaultContent: "admin"},
+            {data: null, defaultContent: ""}
+        ],
+        "fixedColumns": true,
+        "columnDefs": [{
+            "sortable": false,
+            "class": "index",
+            "targets": 0
+        }],
+        "order": [[1, 'asc']],
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "responsive": true,
-    });
-
-    $.validator.setDefaults({
-        submitHandler: function () {
-            alert("Form successful submitted!");
-        }
-    });
-
-    $('#formThongTin').validate({
-        rules: {
-            hovaten: {
-                required: true,
-            },
-            gioitinh: {
-                required: true,
-            },
-            ngaysinh: {
-                required: true,
-            },
-            sodienthoai: {
-                required: true,
-                number: true,
-            },
-            email: {
-                required: true,
-                email: true,
-            },
-            phuongxa: {
-                required: true,
-            },
-            donvicongtac: {
-                required: true,
-            },
-            truong: {
-                required: true,
-            },
-            phuhuynh: {
-                required: true,
-            },
-        },
-        messages: {
-            hovaten: {
-                required: "Vui lòng không bỏ trống",
-            },
-            gioitinh: {
-                required: "Vui lòng không bỏ trống",
-            },
-            ngaysinh: {
-                required: "Vui lòng không bỏ trống",
-            },
-            sodienthoai: {
-                required: "Vui lòng không bỏ trống",
-                number: "Vui lòng nhập số điện thoại",
-            },
-            email: {
-                required: "Vui lòng không bỏ trống",
-                email: "Vui lòng nhập đúng định dạng email",
-            },
-            phuongxa: {
-                required: "Vui lòng không bỏ trống",
-            },
-            donvicongtac: {
-                required: "Vui lòng không bỏ trống",
-            },
-            truong: {
-                required: "Vui lòng không bỏ trống",
-            },
-            phuhuynh: {
-                required: "Vui lòng không bỏ trống",
-            },
-        },
-        errorElement: 'span',
-        errorPlacement: function (error, element) {
-            error.addClass('invalid-feedback');
-            element.closest('.form-group').append(error);
-        },
-        highlight: function (element, errorClass, validClass) {
-            $(element).addClass('is-invalid');
-        },
-        unhighlight: function (element, errorClass, validClass) {
-            $(element).removeClass('is-invalid');
-        }
-    });
 
     //date-mask
-    $('[data-mask]').inputmask()
+    $('[data-mask]').inputmask();
+
+    layDuLieu();
+
+    $('#example1').DataTable().on('order.dt search.dt', function () {
+        $('#example1').DataTable().column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+            cell.innerHTML = i + 1;
+        });
+    }).draw();
 });
 
 
@@ -124,29 +70,28 @@ $(document).ready(
                 let phanLoai = document.querySelector("#phan-loai-form .active").getAttribute('href');
                 let url = "";
 
+                json.SoYeuLyLich.SinhNgay = json.SoYeuLyLich.SinhNgay.split("/").reverse().join('/');
+
                 switch (phanLoai) {
-                    case "#admin":
-                        {
-                            delete json.truong;
-                            delete json.phuHuynh;
-                            delete json.donViCongTac;
-                            delete json.trinhDo;
-                            url = "/api/quantri";
-                        }
+                    case "#admin": {
+                        delete json.truong;
+                        delete json.phuHuynh;
+                        delete json.donViCongTac;
+                        delete json.trinhDo;
+                        url = "/api/quantri";
+                    }
                         break;
-                    case "#giangvien":
-                        {
-                            delete json.truong;
-                            delete json.phuHuynh;
-                            url = "/api/giangvien";
-                        }
+                    case "#giangvien": {
+                        delete json.truong;
+                        delete json.phuHuynh;
+                        url = "/api/giangvien";
+                    }
                         break;
-                    case "#hocvien":
-                        {
-                            delete json.donViCongTac;
-                            delete json.trinhDo;
-                            url = "/api/hocvien";
-                        }
+                    case "#hocvien": {
+                        delete json.donViCongTac;
+                        delete json.trinhDo;
+                        url = "/api/hocvien";
+                    }
                         break;
                 }
 

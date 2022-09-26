@@ -25,6 +25,15 @@ public class Nguoi
     public virtual SoYeuLyLich.SoYeuLyLich? SoYeuLyLich { get; set; }
 
     public virtual TaiKhoan? TaiKhoan { get; set; }
+    
+    [NotMapped]
+    public string PhanLoai {
+        get
+        {
+            return this.GetType().Name;
+        }
+        
+    }
 
     /// <summary>
     /// </summary>
