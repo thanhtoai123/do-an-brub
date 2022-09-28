@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Rez.Contexts;
 using Rez.Models;
 
 namespace Rez.Areas.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Area("Api")]
     [ApiController]
+    [Route("[area]/ChiTietLich")]
     public class ChiTietLich : ControllerBase
     {
         private readonly AppDbContext _context;
@@ -23,23 +25,15 @@ namespace Rez.Areas.Api.Controllers
 
         // GET: api/ChiTietLich
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ChiTietLich>>> GetChiTietLich()
+        public async Task<ActionResult<IEnumerable<Models.ChiTietLich>>> GetAll()
         {
-          if (_context.ChiTietLich == null)
-          {
-              return NotFound();
-          }
             return await _context.ChiTietLich.ToListAsync();
         }
 
         // GET: api/ChiTietLich/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<ChiTietLich>> GetChiTietLich(Guid id)
+        public async Task<ActionResult<Models.ChiTietLich>> Get(Guid id)
         {
-          if (_context.ChiTietLich == null)
-          {
-              return NotFound();
-          }
             var chiTietLich = await _context.ChiTietLich.FindAsync(id);
 
             if (chiTietLich == null)
@@ -53,7 +47,7 @@ namespace Rez.Areas.Api.Controllers
         // PUT: api/ChiTietLich/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutChiTietLich(Guid id, ChiTietLich chiTietLich)
+        public async Task<IActionResult> Put(Guid id, Models.ChiTietLich chiTietLich)
         {
             if (id != chiTietLich.Id)
             {
@@ -84,16 +78,11 @@ namespace Rez.Areas.Api.Controllers
         // POST: api/ChiTietLich
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<ChiTietLich>> PostChiTietLich(ChiTietLich chiTietLich)
+        public async Task<ActionResult<Models.ChiTietLich>> Post(Models.ChiTietLich chiTietLich)
         {
-          if (_context.ChiTietLich == null)
-          {
-              return Problem("Entity set 'AppDbContext.ChiTietLich'  is null.");
-          }
-            _context.ChiTietLich.Add(chiTietLich);
+            _context.ChiTietLich.Attach(chiTietLich);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetChiTietLich", new { id = chiTietLich.Id }, chiTietLich);
+            return CreatedAtAction("GetAll", new { id = chiTietLich.Id }, chiTietLich);
         }
 
         // DELETE: api/ChiTietLich/5

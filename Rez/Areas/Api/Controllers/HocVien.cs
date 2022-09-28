@@ -23,6 +23,11 @@ public class HocVien : ControllerBase
         _database = database;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
     public async Task<IActionResult> GetAll()
     {
         var danhSach = await _database.HocVien.Include(x => x.SoYeuLyLich).AsNoTracking()

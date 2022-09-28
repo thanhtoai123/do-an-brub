@@ -3,29 +3,17 @@ using Rez.ThietLap;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // Add services to the container.
 var services = builder.Services;
 
+// Thiết lập
 builder.AppDb();
-services.AddControllersWithViews().AddNewtonsoftJson(x =>
-{
-    x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-    x.SerializerSettings.DateFormatHandling = Newtonsoft.Json.DateFormatHandling.IsoDateFormat;
-    x.SerializerSettings.ConstructorHandling = Newtonsoft.Json.ConstructorHandling.Default;
-    x.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
-    x.SerializerSettings.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Reuse;
-    x.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
-    x.SerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-    x.SerializerSettings.MetadataPropertyHandling = Newtonsoft.Json.MetadataPropertyHandling.ReadAhead;
-});
+services.ThietLapMVCJSON();
 services.AddEndpointsApiExplorer();
-services.AddSwaggerGen(options =>
-{
-
-
-    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
-});
+services.ThietLapSwagger();
 services.AddHostedService<Rez.Task.DonRac>();
 services.Cors();
 
@@ -41,22 +29,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
-Task task = new(() =>
-{
-
-});
-
-task.Start();
-
-
 app.UseRouting();
 app.UseCors();
 app.UseAuthorization();
-
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Admin}/{controller=Users}/{action=Tatca}/{id?}");

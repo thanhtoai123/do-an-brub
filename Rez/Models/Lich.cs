@@ -55,6 +55,8 @@ public class Lich
     public TinhTrang TinhTrangLich { get; set; } = TinhTrang.ChuaBatDau;
 
     public virtual Lop? Lop { get; set; }
+    
+    public virtual  ICollection<ChiTietLich>? ChiTietLich { get; set; }
 
     /// <summary>
     /// </summary>

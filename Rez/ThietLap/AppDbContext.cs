@@ -5,7 +5,7 @@ namespace Rez.ThietLap;
 
 /// <summary>
 /// </summary>
-public static class ThietLap
+public static partial class ThietLap
 {
     /// <summary>
     /// </summary>

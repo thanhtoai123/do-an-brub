@@ -93,6 +93,11 @@ public class AppDbContext : DbContext
     /// <summary>
     /// </summary>
     public DbSet<TaiKhoan> TaiKhoan { get; set; } = null!;
+    
+    /// <summary>
+    /// Chi tiết lịch context
+    /// </summary>
+    public DbSet<ChiTietLich> ChiTietLich { get; set; } = null;
 
     /// <summary>
     /// </summary>
