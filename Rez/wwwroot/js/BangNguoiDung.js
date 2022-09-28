@@ -1,5 +1,5 @@
-import {FormToJson} from "./FormToJson.js";
-import {TinhThanhPho} from "./TinhThanhPho.js"
+import { FormToJson } from "./FormToJson.js";
+import { TinhThanhPho } from "./TinhThanhPho.js"
 
 
 async function layDuLieu() {
@@ -21,15 +21,23 @@ $(function () {
         "autoWidth": false,
         "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"],
         "columns": [
-            {"data": null, "defaultContent": ""},
-            {data: "hoVaTen"},
-            {data: "taiKhoanDangNhap"},
-            {data: "phanLoai", defaultContent: ""},
-            {data: "thoiGianTao"},
-            {data: null, defaultContent: "admin"},
-            {data: null, render: function(data, type,full, meta) {
-                return '<button class="btn btn-mini btn-primary pull-right">Không</button>' + '<button class="btn btn-mini btn-danger pull-right"> Disabled</button>'
-            }}
+            { "data": null, "defaultContent": "" },
+            { data: "hoVaTen" },
+            { data: "taiKhoanDangNhap" },
+            { data: "phanLoai", defaultContent: "" },
+            { data: "thoiGianTao" },
+            { data: null, defaultContent: "admin" },
+            {
+                data: null, render: function (data, type, full, meta) {
+                    let html = `
+                    <i data-toggle="modal" data-target="#modal-lg" class="fas fa-pencil-alt p-1 mr-2" title="Sửa"></i>
+                    <i data-toggle="modal" data-target="#modal-warning" class="fas fa-trash-alt p-1" title="Xóa"></i>
+                    `;
+                      
+
+                    return html;
+                }
+            }
         ],
         "fixedColumns": true,
         "columnDefs": [{
@@ -46,7 +54,7 @@ $(function () {
     layDuLieu();
 
     $('#example1').DataTable().on('order.dt search.dt', function () {
-        $('#example1').DataTable().column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+        $('#example1').DataTable().column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
             cell.innerHTML = i + 1;
         });
     }).draw();
