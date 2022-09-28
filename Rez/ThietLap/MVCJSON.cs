@@ -19,9 +19,6 @@ public static partial class ThietLap
             x.SerializerSettings.ConstructorHandling = Newtonsoft.Json.ConstructorHandling.Default;
             x.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             x.SerializerSettings.ObjectCreationHandling = Newtonsoft.Json.ObjectCreationHandling.Reuse;
-            x.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All;
-            x.SerializerSettings.MissingMemberHandling = Newtonsoft.Json.MissingMemberHandling.Ignore;
-            x.SerializerSettings.MetadataPropertyHandling = Newtonsoft.Json.MetadataPropertyHandling.ReadAhead;
         });
     }
 }

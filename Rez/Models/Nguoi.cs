@@ -24,7 +24,7 @@ public class Nguoi
     [ForeignKey(nameof(SoYeuLyLichId))]
     public virtual SoYeuLyLich.SoYeuLyLich? SoYeuLyLich { get; set; }
 
-    public virtual TaiKhoan? TaiKhoan { get; set; }
+    public virtual TaiKhoan? TaiKhoan { get; set; } = null!;
     
     [NotMapped]
     public string PhanLoai {
@@ -32,7 +32,6 @@ public class Nguoi
         {
             return this.GetType().Name;
         }
-        
     }
 
     /// <summary>
