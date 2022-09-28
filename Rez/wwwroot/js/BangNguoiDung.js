@@ -27,9 +27,8 @@ $(function () {
             {data: "phanLoai", defaultContent: ""},
             {data: "thoiGianTao"},
             {data: null, defaultContent: "admin"},
-            {data: null, defaultContent: ""},
             {data: null, render: function(data, type,full, meta) {
-                return '<button class="btn btn-mini btn-primary pull-right"> Enabled</button>' + '<button class="btn btn-mini btn-danger pull-right"> Disabled</button>'
+                return '<button class="btn btn-mini btn-primary pull-right">Không</button>' + '<button class="btn btn-mini btn-danger pull-right"> Disabled</button>'
             }}
         ],
         "fixedColumns": true,
